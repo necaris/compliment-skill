@@ -1,4 +1,5 @@
 from mycroft import MycroftSkill, intent_file_handler
+from mycroft.messagebus import Message
 
 
 class Compliment(MycroftSkill):
@@ -6,8 +7,8 @@ class Compliment(MycroftSkill):
         super().__init__()
 
     @intent_file_handler("compliment.intent")
-    def handle_compliment(self, message: dict = None):
-        if message and message.get("name"):
+    def handle_compliment(self, message: Message):
+        if message.data.get("name"):
             self.speak_dialog("compliment.named", message)
         else:
             self.speak_dialog("compliment")

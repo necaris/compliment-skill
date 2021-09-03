@@ -9,6 +9,6 @@ class Compliment(MycroftSkill):
     @intent_file_handler("compliment.intent")
     def handle_compliment(self, message: Message):
         if message.data.get("name"):
-            self.speak_dialog("compliment.named", message)
+            self.speak_dialog("compliment.named", message.data)
         else:
             self.speak_dialog("compliment")
